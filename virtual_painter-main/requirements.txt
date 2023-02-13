@@ -1,0 +1,15 @@
+pip install absl-py
+pip install attrs
+pip install attrs
+pip install cycler
+pip install kiwisolver
+pip install matplotlib
+pip install mediapipe
+pip install numpy
+pip install opencv-contrib-python
+pip install opencv-python
+pip install Pillow
+pip install protobuf
+pip install pyparsing
+pip install python-dateutil
+pip install six
