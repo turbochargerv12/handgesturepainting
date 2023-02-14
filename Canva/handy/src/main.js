@@ -6,8 +6,12 @@ import router from './router'
 
 import ServerError from './components/Others/500Page'
 
+import VueHtml2Canvas from 'vue-html2canvas';
+ 
+Vue.use(VueHtml2Canvas);
 
 Vue.config.productionTip = false
+
 
 Vue.component('ServerError',ServerError) 
 
