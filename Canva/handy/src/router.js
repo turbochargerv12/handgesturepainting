@@ -9,7 +9,7 @@ let router = new Router({
         {
             path: '/',
             name: "HomePage",
-            component: () => import('./components/LoginPage'),
+            component: () => import('./components/HelloWorld'),
             meta : {
                 requiresAuth: false
             }
