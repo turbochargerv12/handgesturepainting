@@ -22,21 +22,6 @@
                 </v-layout> 
             </v-flex>
         </v-layout>
-        <!-- <div class="row mt-5">
-            <div class="col-2"/>
-            <div class="col-8">
-                <Canvas :canvas-id="'canvas-one'" ref="childCanvas"/>
-            </div>
-            <div class="col-2"/>
-        </div> -->
-        <!-- button toggles -->
-        <br>
-        <v-layout wrap >
-            <v-flex xs5></v-flex>
-            
-            <v-flex xs5> 
-            </v-flex>
-        </v-layout>
     </div>
 </template>
 
