@@ -1,27 +1,39 @@
 <template>
     <div>
         <br>
-        <!-- canvas single -->
-        <v-layout wrap  >
-            <v-flex xs1></v-flex>
-            <v-flex xs8>
+        <v-layout wrap justify-space-around align-center>
+            
+            <v-flex xs8> <!-- canvas single -->
                 <div><Canvas :canvas-id="'canvas-one'" ref="childCanvas"/></div>
             </v-flex>
-            <v-flex xs3>
-                <v-layout wrap justify-space-around align-center>
-                    <v-flex xs12 >
-                        <v-color-picker v-model="picker" dot-size="25"
-  swatches-max-height="200" show-swatches  :swatches="swatches" mode="rgba" style="box-shadow: 0 10px 8px -8px black; border: 2px solid black;"> </v-color-picker>
+        </v-layout>
+        <br><v-divider 3px></v-divider><br>
+        <v-layout wrap justify-space-around align-center>
+                    <v-flex xs4 >
+                        <v-color-picker 
+                        v-model="picker" 
+                        hide-inputs
+                        hide-canvas
+                        hide-sliders
+                        swatches-max-height="200" 
+                        show-swatches  
+                        :swatches="swatches"  
+                        elevation="6"> </v-color-picker>
                         <br>
                     </v-flex>
-                    <v-flex text-center xs12>
-                <v-btn elevation="2" @click.prevent="reset">
-                    CLEAR
-                </v-btn>
+                    <v-flex text-center xs4>
+                        <v-btn
+                            class="ma-2"
+                            outlined
+                            fab
+                            elevation="2"
+                            color="indigo darken-4"
+                            @click.prevent="reset"
+                            >
+                            <v-icon>mdi-eraser</v-icon>
+                            </v-btn>
             </v-flex>
                 </v-layout> 
-            </v-flex>
-        </v-layout>
     </div>
 </template>
 
