@@ -1,0 +1,34 @@
+import Vue from 'vue'
+import Router from 'vue-router'
+
+Vue.use(Router)
+let router = new Router({
+    mode: "history",
+    routes: [
+        {
+            path:'/',
+            name:"Canvas",
+            component: () => import('@/components/CanvaS'),
+            meta: { requiresAuth: false}
+        },
+        {
+            path:'home',
+            name:"Master",
+            component: () => import('@/pages/MasteR'),
+            meta: { requiresAuth: false}
+        },
+        {
+            path:'500',
+            name:"ServerError",
+            component: () => import('@/components/Others/500Page'),
+            meta: { requiresAuth: false}
+        },
+        {
+            path:'404',
+            name:"NotFound",
+            component: () => import('@/components/Others/404Page'),
+            meta: { requiresAuth: false}
+        }
+    ]
+});
+export default router;

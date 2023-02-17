@@ -1,7 +1,11 @@
 <template>
     <div>
-        <canvas :id="canvasId" class="canvas-style" v-on:mousedown="mouseDown"
-        />
+        <v-layout wrap justify-center>
+            <v-flex text-center xs11>
+                <canvas :id="canvasId" class="canvas-style" v-on:mousedown="mouseDown"/>
+            </v-flex>
+        </v-layout>
+        
     </div>
 </template>
 

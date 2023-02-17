@@ -1,22 +1,42 @@
 <template>
     <div>
-        <!-- button toggles -->
-        <div class="row mt-5">
-            <div class="col-5" />
-            <div class="col-2">
-                <button class="btn btn-primary btn-block" @click.prevent="reset">CLEAR</button>
-            </div>
-            <div class="col-5"/>
-        </div>
-
+        <br>
         <!-- canvas single -->
-        <div class="row mt-5">
+        <v-layout wrap  >
+            <v-flex xs1></v-flex>
+            <v-flex xs8>
+                <div><Canvas :canvas-id="'canvas-one'" ref="childCanvas"/></div>
+            </v-flex>
+            <v-flex xs3>
+                <v-layout wrap justify-space-around align-center>
+                    <v-flex xs12 >
+                        <v-color-picker v-model="picker" dot-size="25"
+  swatches-max-height="200" show-swatches  :swatches="swatches" mode="rgba" style="box-shadow: 0 10px 8px -8px black; border: 2px solid black;"> </v-color-picker>
+                        <br>
+                    </v-flex>
+                    <v-flex text-center xs12>
+                <v-btn elevation="2" @click.prevent="reset">
+                    CLEAR
+                </v-btn>
+            </v-flex>
+                </v-layout> 
+            </v-flex>
+        </v-layout>
+        <!-- <div class="row mt-5">
             <div class="col-2"/>
             <div class="col-8">
                 <Canvas :canvas-id="'canvas-one'" ref="childCanvas"/>
             </div>
             <div class="col-2"/>
-        </div>
+        </div> -->
+        <!-- button toggles -->
+        <br>
+        <v-layout wrap >
+            <v-flex xs5></v-flex>
+            
+            <v-flex xs5> 
+            </v-flex>
+        </v-layout>
     </div>
 </template>
 
@@ -26,7 +46,16 @@
         name: "MasteR",
         data: () => ({
             buttons: ['Simple', 'Separate', 'Replicated'],
-            single: true
+            single: true,
+            dialog : false,
+            picker: null,
+            swatches: [
+                ['#FF0000', '#AA0000', '#550000'],
+                ['#FFFF00', '#AAAA00', '#555500'],
+                ['#00FF00', '#00AA00', '#005500'],
+                ['#00FFFF', '#00AAAA', '#005555'],
+                ['#0000FF', '#0000AA', '#000055'],
+            ],
         }),
         methods: {
             reset() {
