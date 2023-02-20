@@ -12,8 +12,8 @@
                     <v-flex xs4 >
                         <v-color-picker 
                         v-model = "picker" 
-                        value = "p"                   
-                        @change = "changeColor"
+                        onclick = "changeColor(event)"                  
+                        
                         hide-canvas
                         hide-sliders
                         show-swatches  
@@ -45,7 +45,7 @@
     export default {
         name: "MasteR",
         data: () => ({
-            picker: '#ff0000',
+            picker: {},
             p:null,
             swatches: [
                 ['#FF0000', '#AA0000', '#550000'],
@@ -58,7 +58,6 @@
         }),
         computed:{
             PColor() {
-                console.log(this.p)
             return store.state.p;
         },
         },
@@ -67,7 +66,7 @@
                 this.$refs.childCanvas.reset();
             },
             changeColor(){
-               
+                store.commit("picker",this.picker)
                 console.log(this.picker)
             }
         },
