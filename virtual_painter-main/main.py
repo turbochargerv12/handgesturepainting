@@ -1,6 +1,6 @@
 from handTracker import *
 import cv2
-
+import numpy as np
 import random
 
 class ColorRect():
