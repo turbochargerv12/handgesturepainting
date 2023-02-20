@@ -3,7 +3,7 @@
   <div>
     <v-app>
       <v-main>
-        <ServerError v-if="ServerError" />
+        <!-- <ServerError v-if="ServerError" /> -->
         <!-- <Master/> -->
         <router-view></router-view>
       </v-main>

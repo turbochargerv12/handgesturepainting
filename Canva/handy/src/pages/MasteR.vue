@@ -2,23 +2,24 @@
     <div>
         <br>
         <v-layout wrap justify-space-around align-center>
-            
-            <v-flex xs8> <!-- canvas single -->
+            <v-flex xs8> 
+                <!-- canvas single -->
                 <div><Canvas :canvas-id="'canvas-one'" ref="childCanvas"/></div>
             </v-flex>
         </v-layout>
-        <br><v-divider 3px></v-divider><br>
-        <v-layout wrap justify-space-around align-center>
+        <br><v-divider inset></v-divider><br>
+        <v-layout wrap justify-space-around align-center >
                     <v-flex xs4 >
                         <v-color-picker 
-                        v-model="picker" 
-                        hide-inputs
+                        v-model = "picker" 
+                        value = "p"                   
+                        @change = "changeColor"
                         hide-canvas
                         hide-sliders
-                        swatches-max-height="200" 
                         show-swatches  
                         :swatches="swatches"  
-                        elevation="6"> </v-color-picker>
+                        elevation="6"
+                        ></v-color-picker> 
                         <br>
                     </v-flex>
                     <v-flex text-center xs4>
@@ -39,13 +40,13 @@
 
 <script>
     import Canvas from "../components/CanvaS";
+    import store from "@/store";
+
     export default {
         name: "MasteR",
         data: () => ({
-            buttons: ['Simple', 'Separate', 'Replicated'],
-            single: true,
-            dialog : false,
-            picker: null,
+            picker: '#ff0000',
+            p:null,
             swatches: [
                 ['#FF0000', '#AA0000', '#550000'],
                 ['#FFFF00', '#AAAA00', '#555500'],
@@ -53,10 +54,21 @@
                 ['#00FFFF', '#00AAAA', '#005555'],
                 ['#0000FF', '#0000AA', '#000055'],
             ],
+            color: '#FF0000',
         }),
+        computed:{
+            PColor() {
+                console.log(this.p)
+            return store.state.p;
+        },
+        },
         methods: {
             reset() {
                 this.$refs.childCanvas.reset();
+            },
+            changeColor(){
+               
+                console.log(this.picker)
             }
         },
         components: {

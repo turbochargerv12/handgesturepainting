@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state:{
-        // myName:"",
+        pickerName:"",
         // myRole:"",
         // isloggdin : !!localStorage.getItem("token")
     },
