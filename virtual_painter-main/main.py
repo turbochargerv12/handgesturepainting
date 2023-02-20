@@ -45,7 +45,7 @@ detector = HandTracker(detectionCon=0.8)
 cap = cv2.VideoCapture(0)
 cap.set(3, 1280)
 cap.set(4, 720)
-
+cap.set(cv2.CAP_PROP_FPS, 60)
 # creating canvas to draw on it
 canvas = np.zeros((720,1280,3), np.uint8)
 
