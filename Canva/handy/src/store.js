@@ -5,14 +5,14 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state:{
-        picker:"",
+        Color:"",
         // myRole:"",
         // isloggdin : !!localStorage.getItem("token")
     },
     mutations:{
-        // UserRole(state, item){
-        //     state.myRole = item
-        // },
+        MyColor(state, item){
+            state.Color = item
+        },
         // UserName(state, item){
         //     state.myName = item
         // },

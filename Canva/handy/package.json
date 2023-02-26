@@ -12,6 +12,8 @@
     "konva": "^8.4.2",
     "paper": "^0.12.17",
     "vue": "^2.6.14",
+    "vue-cam-vision": "^0.0.8",
+    "vue-owl-carousel": "^2.0.3",
     "vue-router": "^3.6.5",
     "vuetify": "^2.6.0",
     "vuex": "^3.6.2"

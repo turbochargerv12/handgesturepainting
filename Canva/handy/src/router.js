@@ -11,15 +11,25 @@ let router = new Router({
             name:"Master",
             component: () => import('@/pages/MasteR'),
             meta: { requiresAuth: false},
-            children:[
+            children:[      
+                
                 {
-                    path:'/home',
-                    name:"Canvas",
-                    component: () => import('@/components/CanvaS'),
+                    path:'/cam',
+                    name:"Cam",
+                    props:true,
+                    component: () => import('@/components/WebCam'),
                     meta: { requiresAuth: false}
                 },
+                
             ]
-
+            
+        },
+        {
+            path:'/home',
+            name:"Canvas",
+            props:true,
+            component: () => import('@/components/CanvaS'),
+            meta: { requiresAuth: false}
         },
         {
             path:'/500',

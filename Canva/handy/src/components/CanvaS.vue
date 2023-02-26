@@ -1,15 +1,15 @@
 <template>
     <div>
-        <v-layout wrap justify-center>
+        <v-layout wrap justify-center mt-16>
             <v-flex text-center xs11>
                 <canvas :id="canvasId" class="canvas-style" v-on:mousedown="mouseDown"/>
             </v-flex>
-        </v-layout>
-        
+        </v-layout>        
     </div>
 </template>
 
 <script>
+    
     // TODO: move all of this logic to master
     // packages
     const paper = require('paper');
@@ -27,7 +27,7 @@
             pathCreate(scope) {
                 scope.activate();
                 return new paper.Path({
-                    strokeColor: "#000000",
+                    strokeColor: localStorage.getItem("color"),
                     strokeJoin: 'round',
                     strokeWidth: 1.5
                 })
