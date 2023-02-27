@@ -8,21 +8,21 @@ while True:
     _, img = video.read()
     img = cv2.flip(img, 1)
     hand = detector.findHands(img, draw=False)
-    fing = cv2.imread("C:\\Users\\turbo\\Pictures\\0.jpg")
+    fing = cv2.imread("C:\Users\'\Documents\GitHub\handgesturepainting\0.jpg")
     if hand:
         lmlist = hand[0]
         if lmlist:
             fingerup = detector.fingersUp(lmlist)
             if fingerup == [0, 1, 0, 0, 0]:
-                fing = cv2.imread("C:\\Users\\turbo\\Pictures\\1.jpg")
+                fing = cv2.imread("C:\Users\'\Documents\GitHub\handgesturepainting\1.jpg")
             if fingerup == [0, 1, 1, 0, 0]:
-                fing = cv2.imread("C:\\Users\\turbo\\Pictures\\2.jpg")
+                fing = cv2.imread("C:\Users\'\Documents\GitHub\handgesturepainting\2.jpg")
             if fingerup == [0, 1, 1, 1, 0]:
-                fing = cv2.imread("C:\\Users\\turbo\\Pictures\\3.png")
+                fing = cv2.imread("C:\Users\'\Documents\GitHub\handgesturepainting\3.png")
             if fingerup == [0, 1, 1, 1, 1]:
-                fing = cv2.imread("C:\\Users\\turbo\\Pictures\\4.png")
+                fing = cv2.imread("C:\Users\'\Documents\GitHub\handgesturepainting\4.png")
             if fingerup == [1, 1, 1, 1, 1]:
-                fing = cv2.imread("C:\\Users\\turbo\\Pictures\\5.jpg")
+                fing = cv2.imread("C:\Users\'\Documents\GitHub\handgesturepainting\5.jpg")
     
     
     
