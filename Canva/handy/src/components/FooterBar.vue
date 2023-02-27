@@ -5,8 +5,8 @@
             <v-card class="flex" flat tile>
               <v-divider class="mx-4"> </v-divider>
               <v-card-text class="py-2 grey--text text-center">
-                Periyar Tiger Reserve<br>
-                Designed By: Angela Maria Gigi
+                Gest World<br>
+                Developed By: Team 14
               </v-card-text>
           </v-card>
         </v-flex>

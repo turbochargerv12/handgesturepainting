@@ -12,7 +12,9 @@
         <v-layout wrap>
           <v-flex xs12><router-view></router-view></v-flex>
         </v-layout>
-        
+        <v-layout wrap>
+          <v-flex xs12><FooterBar/></v-flex>
+        </v-layout> 
       </v-main>
     </v-app>
   </div>
@@ -21,12 +23,14 @@
 <script>
   // import Master from "./pages/MasteR";
   import HeaderBar from "./components/HeaderBar";
+  import FooterBar from "./components/FooterBar";
   
 export default {
   name: 'App',
   components: {
     // Master
-    HeaderBar
+    HeaderBar,
+    FooterBar
   }
 }
 </script>

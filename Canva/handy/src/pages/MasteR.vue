@@ -9,7 +9,8 @@
             <v-flex xs4>
                 <v-layout wrap justify-start>
                     <v-flex xs12><WebCam/></v-flex>
-                    <br><v-divider inset></v-divider><br>                    <v-flex xs12>
+                    <br><v-divider inset></v-divider><br>                    
+                    <v-flex xs12>
                         <v-layout wrap justify-space-around align-center >
                             <v-flex xs10 text-center>
                                 <OwlCarousel
