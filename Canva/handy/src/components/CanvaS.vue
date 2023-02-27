@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-layout wrap justify-center mt-16>
+        <v-layout wrap justify-center mt-16 mb-2>
             <v-flex text-center xs11>
                 <canvas :id="canvasId" class="canvas-style" v-on:mousedown="mouseDown"/>
             </v-flex>

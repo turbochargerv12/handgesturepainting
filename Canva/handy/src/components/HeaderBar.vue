@@ -14,7 +14,7 @@
           >Gest World</v-toolbar-title
         >
         <v-spacer></v-spacer>
-        <v-menu bottom left>
+        <!-- <v-menu bottom left>
           <template v-slot:activator="{ on, attrs }">
             <v-btn icon v-bind="attrs" v-on="on" @click="expand = !expand">
               <v-icon>mdi-dots-vertical</v-icon>
@@ -31,7 +31,7 @@
               <v-flex xs12 text-center><v-btn color="red darken-3" outlined>Logout</v-btn></v-flex>
             </v-layout>
           </v-expand-transition>
-        </v-menu>
+        </v-menu> -->
       </v-app-bar>
     </div>
 </template>
