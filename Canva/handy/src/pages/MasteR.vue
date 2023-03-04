@@ -2,11 +2,11 @@
     <div>
         <br>
         <v-layout wrap justify-space-around align-center>
-            <v-flex xs7> 
+            <v-flex xs12 sm7> 
                 <!-- canvas single -->
                 <Canvas :canvas-id="'canvas-one'" ref="childCanvas"/>
             </v-flex>
-            <v-flex xs4>
+            <v-flex xs12 sm4>
                 <v-layout wrap justify-start>
                     <v-flex xs12><WebCam/></v-flex>
                     <br><v-divider inset></v-divider><br>                    

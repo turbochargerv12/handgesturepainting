@@ -11,7 +11,7 @@
         <v-divider></v-divider>
         <v-layout wrap>
           <v-flex xs12><router-view></router-view></v-flex>
-        </v-layout>
+        </v-layout>  
         <v-layout wrap>
           <v-flex xs12><FooterBar/></v-flex>
         </v-layout> 

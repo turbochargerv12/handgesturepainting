@@ -2,6 +2,7 @@ from handTracker import *
 import cv2
 import numpy as np
 import random
+import base64
 
 class ColorRect():
     def __init__(self, x, y, w, h, color, text='', alpha = 0.5):
@@ -41,7 +42,9 @@ class ColorRect():
 detector = HandTracker(detectionCon=0.8)
 
 #initilize the camera 
-cap = cv2.VideoCapture(0)
+# cap = cv2.VideoCapture(0)
+jpg_bytes = base64.b64decode(cv2.VideoCapture(0))
+cap = cv2.imdecode(np.frombuffer(jpg_bytes, dtype=np.uint8), cv2.IMREAD_COLOR)
 cap.set(3, 1280)
 cap.set(4, 720)
 cap.set(cv2.CAP_PROP_FPS, 60)

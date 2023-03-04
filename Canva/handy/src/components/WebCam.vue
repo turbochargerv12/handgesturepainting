@@ -15,15 +15,28 @@
 </template>
 
 <script>
+import WebSocket from 'ws';
 export default {
   data() {
     return {
       cameraMode: "user",
-      cameraOrientation: "normal"
+      cameraOrientation: "normal",
+      socket: null,
     };
   },
   mounted() {
     this.startCamera();
+    this.socket = new WebSocket('ws://localhost:8000');
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+
+    const sendFrame = () => {
+      context.drawImage(this.$refs.video, 0, 0, canvas.width, canvas.height);
+      const imageData = canvas.toDataURL('image/jpeg', 0.5);
+      this.socket.send(imageData);
+      requestAnimationFrame(sendFrame);
+    };
+    requestAnimationFrame(sendFrame);
     // navigator.mediaDevices.getUserMedia({ video: true })
     //   .then((stream) => {
     //     this.$refs.video.srcObject = stream;

@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from 'vue';
+import Router from 'vue-router';
 
 Vue.use(Router)
 let router = new Router({
@@ -20,17 +20,17 @@ let router = new Router({
                     component: () => import('@/components/WebCam'),
                     meta: { requiresAuth: false}
                 },
-                
+                {
+                    path:'/home',
+                    name:"Canvas",
+                    props:true,
+                    component: () => import('@/components/CanvaS'),
+                    meta: { requiresAuth: false}
+                },
             ]
             
         },
-        {
-            path:'/home',
-            name:"Canvas",
-            props:true,
-            component: () => import('@/components/CanvaS'),
-            meta: { requiresAuth: false}
-        },
+        
         {
             path:'/500',
             name:"ServerError",
