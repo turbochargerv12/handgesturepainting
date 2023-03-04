@@ -2,6 +2,17 @@ from handTracker import *
 import cv2
 import numpy as np
 import random
+import mediapipe as mp
+
+mp_drawing = mp.solutions.drawing_utils
+mp_hands = mp.solutions.hands
+
+# Define the coordinates of the whiteboard
+WHITEBOARD_X, WHITEBOARD_Y = 400, 300
+
+# Initialize the MediaPipe Hands model
+hands = mp_hands.Hands(static_image_mode=False, max_num_hands=1, min_detection_confidence=0.5)
+
 
 class ColorRect():
     def __init__(self, x, y, w, h, color, text='', alpha = 0.5):
@@ -101,7 +112,31 @@ hideColors = True
 hidePenSizes = True
 
 while True:
+    # Read frame from the webcam
+    ret, frame = cap.read()
 
+    # Convert the frame to RGB and process it with MediaPipe Hands
+    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    results = hands.process(frame_rgb)
+
+    # If a hand is detected, get the location of the index finger and draw a circle around it
+    if results.multi_hand_landmarks:
+        for hand_landmarks in results.multi_hand_landmarks:
+            index_finger_landmark = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP]
+            index_finger_x, index_finger_y = int(index_finger_landmark.x * frame.shape[1]), int(index_finger_landmark.y * frame.shape[0])
+            cv2.circle(frame, (index_finger_x, index_finger_y), 10, (0, 255, 0), -1)
+
+            # Calculate the location of the index finger relative to the whiteboard
+            whiteboard_index_finger_x, whiteboard_index_finger_y = WHITEBOARD_X + (index_finger_x - frame.shape[1] // 2), WHITEBOARD_Y + (index_finger_y - frame.shape[0] // 2)
+            print(f"Index finger location: ({whiteboard_index_finger_x}, {whiteboard_index_finger_y})")
+
+    # Display the resulting frame
+    #cv2.imshow('MediaPipe Hands', frame)
+
+    # Exit the loop if 'q' is pressed
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+    
     if coolingCounter:
         coolingCounter -=1
         #print(coolingCounter)
