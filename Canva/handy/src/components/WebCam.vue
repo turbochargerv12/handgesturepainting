@@ -15,7 +15,8 @@
 </template>
 
 <script>
-import WebSocket from 'ws';
+// import WebSocket from 'ws';
+import axios from 'axios';
 export default {
   data() {
     return {
@@ -26,17 +27,19 @@ export default {
   },
   mounted() {
     this.startCamera();
-    this.socket = new WebSocket('ws://localhost:8000');
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-
-    const sendFrame = () => {
-      context.drawImage(this.$refs.video, 0, 0, canvas.width, canvas.height);
-      const imageData = canvas.toDataURL('image/jpeg', 0.5);
-      this.socket.send(imageData);
-      requestAnimationFrame(sendFrame);
-    };
-    requestAnimationFrame(sendFrame);
+    this.submitForm();
+    // this.socket = new WebSocket('ws://localhost:5000/');
+    // const canvas = document.createElement('canvas');
+    // const context = canvas.getContext('2d');
+    
+    // this.submitForm();
+    // const sendFrame = () => {
+    //   context.drawImage(this.$refs.video, 0, 0, canvas.width, canvas.height);
+    //   const imageData = canvas.toDataURL('image/jpeg', 0.5);
+    //   this.socket.send(imageData);
+    //   requestAnimationFrame(sendFrame);
+    // };
+    // requestAnimationFrame(sendFrame);
     // navigator.mediaDevices.getUserMedia({ video: true })
     //   .then((stream) => {
     //     this.$refs.video.srcObject = stream;
@@ -66,7 +69,20 @@ export default {
         this.cameraOrientation = "normal";
       }
       this.startCamera();
-    }
+    },
+    submitForm() {
+      axios.post('http://localhost:5000/data', {
+        name: this.$refs.video,
+      })
+        .then((response) => {
+          if (response.data.status == true) {
+            console.log('Data sent successfully!');
+          }
+        })
+        .catch((error) => {
+          console.log('Error sending data:', error);
+        });
+    },
   }
 }
 </script>
