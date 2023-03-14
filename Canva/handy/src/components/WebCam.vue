@@ -27,7 +27,6 @@ export default {
   },
   mounted() {
     this.startCamera();
-    this.submitForm();
     // this.socket = new WebSocket('ws://localhost:5000/');
     // const canvas = document.createElement('canvas');
     // const context = canvas.getContext('2d');
@@ -40,6 +39,7 @@ export default {
     //   requestAnimationFrame(sendFrame);
     // };
     // requestAnimationFrame(sendFrame);
+    // https://a2i2.deakin.edu.au/2020/04/23/real-time-data-transfer-using-vue-and-socket-io-part-1-of-3/
     // navigator.mediaDevices.getUserMedia({ video: true })
     //   .then((stream) => {
     //     this.$refs.video.srcObject = stream;
@@ -54,7 +54,9 @@ export default {
       navigator.mediaDevices.getUserMedia({ video: { facingMode: this.cameraMode } })
         .then((stream) => {
           this.$refs.video.srcObject = stream;
+          this.sm = stream;
           this.$refs.video.play();
+          this.submitForm(this.$refs.video.play())
         })
         .catch((err) => {
           console.log("Error accessing the webcam:", err);
@@ -70,9 +72,9 @@ export default {
       }
       this.startCamera();
     },
-    submitForm() {
-      axios.post('http://localhost:5000/data', {
-        name: this.$refs.video,
+    submitForm(hello) {
+      axios.post('http://localhost:5000/media', {
+        name: hello, 
       })
         .then((response) => {
           if (response.data.status == true) {

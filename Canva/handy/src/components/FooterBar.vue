@@ -5,7 +5,7 @@
             <v-card class="flex" flat tile>
               <v-divider class="mx-4"> </v-divider>
               <v-card-text class="py-2 grey--text text-center">
-                Gest World<br>
+                Gest Board<br>
                 Developed By: Team 14
               </v-card-text>
           </v-card>

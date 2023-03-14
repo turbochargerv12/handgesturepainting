@@ -11,7 +11,7 @@
             font-size: 2em;
             padding-left: 40px;
           "
-          >Gest World</v-toolbar-title
+          >Gest Board</v-toolbar-title
         >
         <v-spacer></v-spacer>
         <!-- <v-menu bottom left>

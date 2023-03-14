@@ -16,8 +16,8 @@ Vue.use(VueKonva);
 Vue.component('ServerError',ServerError); 
 // Vue.component('VueElementLoading',vueElementLoading);
 
-axios.defaults.baseURL="http://localhost:5000/data"
-Vue.prototype.baseURL="http://localhost:5000/data"
+axios.defaults.baseURL="http://localhost:5000/"
+Vue.prototype.baseURL="http://localhost:5000/"
 
 Vue.config.productionTip = false
 
