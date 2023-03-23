@@ -20,7 +20,7 @@
                                 :responsive="owlResponsive"
                                 >
                                     <template>
-                                        <div v-for="col in swatches" :key="col">
+                                        <div v-for=" (col,ide) in swatches" :key="ide">
                                             <v-layout wrap >
                                                 <v-flex xs4 text-center pa-2 >
                                                     <v-btn fab small :style = "{backgroundColor : col[0]}" @click="selectColor(col[0])"></v-btn>

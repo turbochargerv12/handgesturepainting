@@ -61,6 +61,7 @@
 from flask import Flask, request, render_template
 from flask_cors import CORS, cross_origin
 
+
 import numpy as np
 import cv2
 import json
@@ -68,9 +69,16 @@ import base64
 
 app = Flask(__name__)
 CORS(app, support_credentials=True)
-# @app.route('/')
-# def home():
-#     return render_template('http://192.168.137.77:8080/')
+@app.route('/')
+def home():
+    return 'succesful'
+
+@app.route('/image', methods=['POST'])
+@cross_origin(supports_credentials=True)
+def process_image():
+    image_data = request.get_data()
+    print(image_data)   
+    return 'image'
 
 @app.route('/data', methods=['POST','GET'])
 @cross_origin(supports_credentials=True)
