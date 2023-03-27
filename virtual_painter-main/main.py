@@ -54,8 +54,6 @@ detector = HandTracker(detectionCon=0.8)
 
 #initilize the camera 
 cap = cv2.VideoCapture(0)
-# jpg_bytes = base64.b64decode(cv2.VideoCapture(0))
-# cap = cv2.imdecode(np.frombuffer(jpg_bytes, dtype=np.uint8), cv2.IMREAD_COLOR)
 cap.set(3, 1280)
 cap.set(4, 720)
 cap.set(cv2.CAP_PROP_FPS, 60)
