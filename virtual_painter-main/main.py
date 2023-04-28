@@ -74,24 +74,23 @@ eraserSize = 20
 colorsBtn = ColorRect(200, 0, 100, 100, (120,255,0), 'Colors')
 
 colors = []
-#random color
+# random color
 b = int(random.random()*255)-1
 g = int(random.random()*255)
 r = int(random.random()*255)
 print(b,g,r)
 colors.append(ColorRect(300,0,100,100, (b,g,r)))
-#red
+# red
 colors.append(ColorRect(400,0,100,100, (0,0,255)))
-#blue
+# blue
 colors.append(ColorRect(500,0,100,100, (255,0,0)))
-#green
+# green
 colors.append(ColorRect(600,0,100,100, (0,255,0)))
-#yellow
+# yellow
 colors.append(ColorRect(700,0,100,100, (0,255,255)))
-#erase (black)
+# erase (black)
 colors.append(ColorRect(800,0,100,100, (0,0,0), "Eraser"))
-
-#clear
+# clear
 clear = ColorRect(900,0,100,100, (100,100,100), "Clear")
 
 ########## pen sizes #######
