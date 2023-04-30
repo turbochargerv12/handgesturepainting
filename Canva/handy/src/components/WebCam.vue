@@ -13,13 +13,22 @@ export default {
         const CHUNK_SIZE = 1024 * 1024; // 1MB
         let offset = 0;
         const sendChunk = () => {
-          const blob = video.captureStream().getVideoTracks()[0].stop();
-          const chunk = blob.prototype.slice(offset, offset + CHUNK_SIZE);
-          socket.send(chunk);
+          const stream = video.captureStream();
+          const recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
+          
+          recorder.ondataavailable = function (event) {
+            socket.send(event.data);
+          };
+
+          recorder.start();
+
+          setTimeout(() => {
+            recorder.stop();
+            if (offset < stream.size) {
+              sendChunk();
+            }
+          }, 100);
           offset += CHUNK_SIZE;
-          if (offset < blob.size) {
-            setTimeout(sendChunk, 100);
-          }
         };
         sendChunk();
       });
