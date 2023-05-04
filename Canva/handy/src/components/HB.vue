@@ -17,7 +17,7 @@
   <script>
   // import WebSocket from 'ws';
   import axios from 'axios';
-  export default {
+  export default{
     data() {
       return {
         cameraMode: "user",

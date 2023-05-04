@@ -50,7 +50,7 @@ class ColorRect():
 
 
 #initilize the habe detector
-detector = HandTracker(detectionCon=0.8)
+detector = HandTracker(detectionCon = 0.8)
 
 #initilize the camera 
 cap = cv2.VideoCapture(0)
