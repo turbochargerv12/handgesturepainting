@@ -4,6 +4,7 @@ import numpy as np
 import random
 import base64
 import mediapipe as mp
+from cvzone.HandTrackingModule import HandDetector
 
 mp_drawing = mp.solutions.drawing_utils
 mp_hands = mp.solutions.hands
@@ -49,8 +50,9 @@ class ColorRect():
         return False
 
 
-#initilize the habe detector
+#initilize the have detector
 detector = HandTracker(detectionCon = 0.8)
+detect = HandDetector(maxHands=1, detectionCon=0.8)
 
 #initilize the camera 
 cap = cv2.VideoCapture(0)
@@ -114,7 +116,7 @@ hidePenSizes = True
 while True:
     # Read frame from the webcam
     ret, frame = cap.read()
-
+   
     # Convert the frame to RGB and process it with MediaPipe Hands
     frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     results = hands.process(frame_rgb)
@@ -146,7 +148,25 @@ while True:
         break
     frame = cv2.resize(frame, (1280, 720))
     frame = cv2.flip(frame, 1)
-
+    hnd = detector.findHands(frame, draw=False)
+    try:
+        if hnd:  
+            lmlist = hnd[0]
+            if lmlist:
+                fingerup = detector.fingersUp(lmlist)
+                if fingerup == [0, 1, 0, 0, 0]:
+                    # if fingerup == [0, 1, 1, 0, 0]:
+                        
+                    if fingerup == [0, 1, 1, 1, 0]:
+                        clear.alpha = 0 
+                        canvas = np.zeros((720,1280,3), np.uint8)
+                    # if fingerup == [0, 1, 1, 1, 1]:
+                    
+                    # if fingerup == [1, 1, 1, 1, 1]:
+                    
+                    # if fingerup == [0, 0, 0, 0, 1]:
+    except Exception:
+                print('Divided by zero')
     detector.findHands(frame)
     positions = detector.getPostion(frame, draw=False)
     upFingers = detector.getUpFingers(frame)
@@ -228,7 +248,9 @@ while True:
         
         else:
             px, py = 0, 0
-        
+    # gesture shown
+   
+
     # put colors button
     colorsBtn.drawRect(frame)
     cv2.rectangle(frame, (colorsBtn.x, colorsBtn.y), (colorsBtn.x +colorsBtn.w, colorsBtn.y+colorsBtn.h), (255,255,255), 2)
@@ -275,3 +297,6 @@ while True:
         break
 cap.release()
 cv2.destroyAllWindows()
+
+
+               
