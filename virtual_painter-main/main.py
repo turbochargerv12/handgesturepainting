@@ -13,7 +13,7 @@ mp_hands = mp.solutions.hands
 WHITEBOARD_X, WHITEBOARD_Y = 400, 300
 
 # Initialize the MediaPipe Hands model
-hands = mp_hands.Hands(static_image_mode=False, max_num_hands=1, min_detection_confidence=0.5)
+hands = mp_hands.Hands(static_image_mode = False, max_num_hands = 1, min_detection_confidence = 0.5)
 
 
 class ColorRect():
@@ -23,15 +23,15 @@ class ColorRect():
         self.w = w
         self.h = h
         self.color = color
-        self.text=text
+        self.text = text
         self.alpha = alpha
         
     
-    def drawRect(self, img, text_color=(255,255,255), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.8, thickness=2):
+    def drawRect(self, img, text_color = (255,255,255), fontFace = cv2.FONT_HERSHEY_SIMPLEX, fontScale = 0.8, thickness = 2):
         #draw the box
         alpha = self.alpha
         bg_rec = img[self.y : self.y + self.h, self.x : self.x + self.w]
-        white_rect = np.ones(bg_rec.shape, dtype=np.uint8)
+        white_rect = np.ones(bg_rec.shape, dtype = np.uint8)
         white_rect[:] = self.color
         res = cv2.addWeighted(bg_rec, alpha, white_rect, 1-alpha, 1.0)
         
@@ -45,14 +45,14 @@ class ColorRect():
 
 
     def isOver(self,x,y):
-        if (self.x + self.w > x > self.x) and (self.y + self.h> y >self.y):
+        if (self.x + self.w > x > self.x) and (self.y + self.h > y > self.y):
             return True
         return False
 
 
 #initilize the have detector
 detector = HandTracker(detectionCon = 0.8)
-detect = HandDetector(maxHands=1, detectionCon=0.8)
+detect = HandDetector(maxHands = 1, detectionCon = 0.8)
 
 #initilize the camera 
 cap = cv2.VideoCapture(0)
@@ -77,7 +77,7 @@ colorsBtn = ColorRect(200, 0, 100, 100, (120,255,0), 'Colors')
 
 colors = []
 # random color
-b = int(random.random()*255)-1
+b = int(random.random()*255) - 1
 g = int(random.random()*255)
 r = int(random.random()*255)
 print(b,g,r)
@@ -149,28 +149,29 @@ while True:
     frame = cv2.resize(frame, (1280, 720))
     frame = cv2.flip(frame, 1)
     hnd = detector.findHands(frame, draw=False)
-    try:
-        if hnd:  
-            lmlist = hnd[0]
-            if lmlist:
-                fingerup = detector.fingersUp(lmlist)
-                if fingerup == [0, 1, 0, 0, 0]:
+    # try:
+    #     if hnd:  
+    #         lmlist = hnd[0]
+    #         if lmlist:
+    #             fingerup = detector.fingersUp(lmlist)
+    #             if fingerup == [0, 1, 0, 0, 0]:
                     # if fingerup == [0, 1, 1, 0, 0]:
                         
-                    if fingerup == [0, 1, 1, 1, 0]:
-                        clear.alpha = 0 
-                        canvas = np.zeros((720,1280,3), np.uint8)
+                    # if fingerup == [0, 1, 1, 1, 0]:
+                    #     print('hi')
+                    #     clear.alpha = 0 
+                    #     canvas = np.zeros((720,1280,3), np.uint8)
                     # if fingerup == [0, 1, 1, 1, 1]:
                     
                     # if fingerup == [1, 1, 1, 1, 1]:
                     
                     # if fingerup == [0, 0, 0, 0, 1]:
-    except Exception:
-                print('Divided by zero')
+    # except Exception:
+    #             print('Divided by zero')
     detector.findHands(frame)
     positions = detector.getPostion(frame, draw=False)
     upFingers = detector.getUpFingers(frame)
-
+    print('upFinger = ',upFingers)
     if upFingers:
         x, y = positions[8][0], positions[8][1]
         if upFingers[1] and not whiteBoard.isOver(x, y):
@@ -229,11 +230,8 @@ while True:
 
             else:
                 boardBtn.alpha = 0.5
-            
-            
-            
 
-        elif upFingers[1] and not upFingers[2]:
+        elif upFingers[1] and not upFingers[2]and not upFingers[3] and not upFingers[4] and not upFingers[0]:
             if whiteBoard.isOver(x, y) and not hideBoard:
                 #print('index finger is up')
                 cv2.circle(frame, positions[8], brushSize, color,-1)
@@ -243,9 +241,21 @@ while True:
                 if color == (0,0,0):
                     cv2.line(canvas, (px,py), positions[8], color, eraserSize)
                 else:
-                    cv2.line(canvas, (px,py), positions[8], color,brushSize)
+                    cv2.line(canvas, (px,py), positions[8], color, brushSize)
                 px, py = positions[8]
         
+        
+        elif upFingers == [True,True,False,False,False]:
+            clear.alpha = 0 
+            canvas = np.zeros((720,1280,3), np.uint8)
+
+        elif upFingers == [False,True,False,False,True]:
+            coolingCounter = 10
+            boardBtn.alpha = 0
+            hideBoard = False
+            # hideBoard = False if hideBoard else True
+            # boardBtn.text = 'Board' if hideBoard else 'Hide'
+
         else:
             px, py = 0, 0
     # gesture shown
@@ -297,6 +307,3 @@ while True:
         break
 cap.release()
 cv2.destroyAllWindows()
-
-
-               

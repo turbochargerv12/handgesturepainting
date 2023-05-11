@@ -103,26 +103,42 @@ export default{
     //       }     
     // }
 
-import io from 'socket.io-client';
-const socket = io('http://localhost:5000/video_stream');
+//     import io from 'socket.io-client';
+//     import Vue from 'vue';
 
-// Capture video from webcam
-const videoElement = document.querySelector('video');
-navigator.mediaDevices.getUserMedia({ video: true })
-  .then((stream) => {
-    videoElement.srcObject = stream;
+// const socket = io('http://localhost:5000/video_stream');
 
-    // Send video frames to FastAPI endpoint using WebSocket
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-    setInterval(() => {
-      canvas.width = videoElement.videoWidth;
-      canvas.height = videoElement.videoHeight;
-      context.drawImage(videoElement, 0, 0);
-      const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-      socket.emit('video_frame', imageData);
-    }, 1000/30);
-  });
+// new Vue({
+//   el: '#app',
+//   data: {
+//     videoSrc: null,
+//   },
+//   mounted() {
+//     // Capture video from webcam
+//     const videoElement = this.$refs.video;
+//     navigator.mediaDevices.getUserMedia({ video: true })
+//       .then((stream) => {
+//         videoElement.srcObject = stream;
+//         videoElement.play();
+
+//         // Send video frames to FastAPI endpoint using WebSocket
+//         const canvas = document.createElement('canvas');
+//         const context = canvas.getContext('2d');
+//         setInterval(() => {
+//           canvas.width = videoElement.videoWidth;
+//           canvas.height = videoElement.videoHeight;
+//           context.drawImage(videoElement, 0, 0);
+//           const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+//           socket.emit('video_frame', imageData);
+//         }, 1000/30);
+//       });
+      
+//     // Receive processed video frames from FastAPI endpoint using WebSocket
+//     socket.on('processed_frame', (frameData) => {
+//       this.videoSrc = URL.createObjectURL(new Blob([frameData], { type: 'image/jpeg' }));
+//     });
+//   },
+// });
 
 
 </script>

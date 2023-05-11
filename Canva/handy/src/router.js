@@ -5,9 +5,14 @@ Vue.use(Router)
 let router = new Router({
     mode: "history",
     routes: [
-        
         {
             path:'/',
+            name:"Button",
+            component: () => import('@/components/ButtoN'),
+            meta: { requiresAuth: false},
+        },        
+        {
+            path:'/hme',
             name:"Master",
             component: () => import('@/pages/MasteR'),
             meta: { requiresAuth: false},
